@@ -1,0 +1,88 @@
+# name: test
+
+runLogic:
+  iterations: 1
+  actions:
+    - vuser_init
+    - Action
+    - vuser_end
+  otherFiles:
+    - AsyncCallbacks.c
+  init:
+    action: vuser_init
+  main:
+    kind: random
+    iterations: 1
+    blocks:
+      - kind: action
+        weight: 100
+        action: Action
+      - kind: action
+        weight: 0
+        action: vuser_end
+  end:
+    action: vuser_end
+
+thinkTime:
+  mode: random
+  minimum: 0.1
+  maximum: 2
+
+pacing:
+  mode: intervals
+  delay: 3
+
+log:
+  advancedTrace: true
+  dataReturnedByServer: true
+  parameterSubstitution: true
+
+errorHandling:
+  continueOnError: false
+  snapshotOnError: true
+
+downloadFilters:
+  # - url: HTTP://localhost:4545/html/mode
+  # - hostSfx: :4545
+excludeDownloadFilters: true
+
+# proxy:
+#   mode: custom
+#   httpProxy: localhost
+#   httpProxyPort: 8888
+
+parameters:
+  - name: P_Custom
+    kind: custom
+    value: 123
+    updatedOn: once
+  - name: P_Date
+    kind: datetime
+    updatedOn: iteration
+    format: "%Y-%m-%d %H:%M:%S"
+  - name: P_LG
+    kind: lg
+  - name: P_VuserID
+    kind: vuserid
+    format: "%d"
+  - name: P_Iter
+    kind: iteration
+  - name: P_Rand
+    kind: random
+    min: 1
+    max: 5
+  - name: P_Unique
+    kind: unique
+    blockSize: 10
+  - name: P_Second
+    kind: file
+    filename: test.dat
+  - name: P_Tab1
+    kind: file
+    filename: tabs.dat
+    columnDelimeter: "\t"
+  - name: P_Tab2
+    kind: file
+    filename: tabs.dat
+    columnDelimeter: "\t"
+    column: 1

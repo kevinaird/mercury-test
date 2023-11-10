@@ -1,0 +1,21 @@
+scripts:
+  - name: test
+    path: test
+    weight: 200
+  # - name: MercuryTours
+  #   path: "examples/MercuryTours"
+  #   weight: 10
+  
+phases:
+  - rampTo: 200
+    duration: 30
+  - rampTo: 200
+    duration: 60
+  # - rampTo: 250
+  #   duration: 30
+  # - rampTo: 250
+  #   duration: 60
+  # - rampTo: 500
+  #   duration: 30
+  # - rampTo: 500
+  #   duration: 60
